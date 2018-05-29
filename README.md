@@ -171,7 +171,7 @@ ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(5);
 ```
 
 #### 结构图
-   https://raw.githubusercontent.com/woxiaobao/thread-pool-discuss/master/1.png
+   
 
 ### 参数解释
 
@@ -194,7 +194,7 @@ TimeUnit.NANOSECONDS; //纳秒
 - threadFactory：线程工厂，主要用来创建线程。默认使用Executors.defaultThreadFactory() 来创建线程。使用默认的ThreadFactory来创建线程时，会使新创建的线程具有相同的NORM_PRIORITY优先级并且是非守护线程，同时也设置了线程的名称。
 - handler：当线程池中线程数量达到maximumPoolSize时，仍有任务需要创建线程来完成，则handler采取相应的策略，有以下几种策略：
 adPoolExecutor.CallerRunsPolicy;//只用调用者所在线程来运行任务
-```
+
 
 结论：从ThreadPoolExecutor的源码我们可以看到，ThreadPoolExecutor类继承了抽象类AbstractExecutorService，而抽象类AbstractExecutorService实现了ExecutorService接口，ExecutorService接口又继承了Executor接口。
     Executor是最顶层接口，在它里面只声明了一个方法execute(Runnable)，返回值为void，参数为Runnable类型，用来执行传进去的任务的；
@@ -267,7 +267,7 @@ class MyTask implements Runnable {
 如果P < 0.2，这个公式就不适用了，T可以取一个固定值，比如 5*C。另外公式里的C不一定是CPU总数，可以是“分配给这项任务的CPU数目”，比如在8核机器上分出4个核来做一项任务，那么C=4
 ```
 
-结论：
+#### 结论：
 最佳线程数目 = （线程等待时间与线程CPU时间之比 + 1）* CPU数目
 
 线程等待时间所占比例越高，需要越多线程。线程CPU时间所占比例越高，需要越少线程。
